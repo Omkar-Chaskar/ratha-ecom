@@ -1,0 +1,33 @@
+@import "https://getratha.netlify.app/styles.css";
+@import "./Style/filter.css";
+@import "./Style/home.css";
+@import "./Style/login.css";
+@import "./Style/mycart.css";
+@import "./Style/productpage.css";
+@import "./Style/productpagegrid.css";
+@import "./Style/wishlist.css";
+@import "./Style/custome.css";
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  * {
+    padding: 0;
+  }
+}

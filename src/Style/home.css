@@ -11,15 +11,17 @@
 }
 
 .main-container {
-  padding: 1rem auto;
-  margin: 3rem 0.5rem 0;
+  padding: auto;
+  margin: 3rem 0 0;
+}
+
+.home-catagory {
+  padding: 0 0.5rem;
 }
 
 .cust-card {
   width: 100%;
-  padding: 2rem 1rem 0;
-  justify-content: center;
-  position: relative;
+  padding: 2rem 0.1rem 0;
 }
 
 .card-title {
@@ -38,6 +40,11 @@
 
 .card {
   width: 50%;
+}
+
+.card-img {
+  width: 100%;
+  height: 15vw;
 }
 
 .card__primary-action {
@@ -61,13 +68,12 @@
   .cust-card {
     width: 100%;
     height: 100%;
-    padding: 0.5rem 0.2rem;
+    padding: 0.5rem 0.1rem 0;
   }
 
   .home-img-card {
     width: 100%;
-    height: 70vw;
-    padding: 1rem 0.2rem;
+    height: 67vw;
   }
 
   .flex {

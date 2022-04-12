@@ -1,12 +1,6 @@
 import "./styles.css";
-import Navigation from "./Components/Navigation";
-import Home from "./pages/Home";
-import ProductPage from "./pages/ProductPage";
-import WishList from "./pages/WishList";
-import MyCart from "./pages/MyCart";
-import Mockman from "./pages/Mockman";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import {Navigation} from "./Components/index";
+import {Home, ProductPage, Mockman, MyCart, WishList, Login, Signup} from "./pages/index";
 
 import { Routes, Route } from "react-router-dom";
 

@@ -1,6 +1,5 @@
 import "../styles.css";
-import CartProduct from "../Components/CartProduct";
-import CartOrder from "../Components/CartOrder";
+import { CartProduct, CartOrder} from "../Components/index";
 
 export default function MyCart() {
   return (

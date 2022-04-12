@@ -1,6 +1,5 @@
 import "../styles.css";
-import Filter from "../Components/Filter";
-import Product from "../Components/Product";
+import {Filter ,Product } from "../Components/index";
 
 export default function ProductPage() {
   return (

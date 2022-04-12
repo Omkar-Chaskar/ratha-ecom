@@ -3,8 +3,12 @@ import "../styles.css";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Badge } from "@mui/material";
+import { useWishlist } from "../context/wishlist-provider";
 
 export default function Navigation() {
+
+  const { wishlistState } = useWishlist();
+
   return (
     <nav className="navigation">
       <Link to="/">
@@ -26,9 +30,12 @@ export default function Navigation() {
       <div className="nav-submenu">
         <ul className="nav-flex-row">
           <li className="nav-submenu-sub">
-            <Link to="WishList">
+          <Link to="WishList">
               <div className="badge">
-                <Badge badgeContent={4} color="error">
+                <Badge
+                  badgeContent={wishlistState.wishlist.length}
+                  color="error"
+                >
                   <FavoriteIcon />
                 </Badge>
               </div>

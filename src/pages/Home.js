@@ -1,7 +1,5 @@
 import "../styles.css";
-import CatagoriesCard from "../Components/Catagories-card";
-import HomeCard from "../Components/Home-card";
-import Collection from "../Components/Collection";
+import {CatagoriesCard, HomeCard ,Collection }from "../Components/index";
 
 export default function Home() {
   return (

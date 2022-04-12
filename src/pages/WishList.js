@@ -1,5 +1,5 @@
 import "../styles.css";
-import WishListProduct from "../Components/WishListProduct";
+import {WishListProduct} from "../Components/index";
 
 export default function ProductPage() {
   return (

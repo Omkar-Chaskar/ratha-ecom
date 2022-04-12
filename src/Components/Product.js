@@ -4,12 +4,14 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 import { useFilter } from "../context/filter-provider";
 import { useWishlist } from "../context/wishlist-provider";
+import { useCart } from "../context/cart-provider";
 
 export default function Product() {
 
   const { productsList: filteredProduct } = useFilter();
   const { wishlistState ,wishlistDispatch } = useWishlist();
-
+  const { cartState, cartDispatch } = useCart();
+  
   return (
     <div>
       <div className="main-header-container flex">
@@ -46,15 +48,13 @@ export default function Product() {
                   <img
                     className="card-img-height"
                     src={products.productImg}
-                    alt=""
+                    alt={products.subtitle}
                   />
                 </div>
               </div>
               <div className="card__secondary text-center card__secondary-vertical">
-                <p className="p1"> 
                 <p className="card__subtitle card-price bold p3">
                 &#8377;{products.price} <span className="card-cut-price">&#8377;{products.orignalPrice}</span>
-            </p>
                 </p>
                 <div className="card__subtitle text-center">
                 <p className="p3">
@@ -66,11 +66,20 @@ export default function Product() {
                 </div>
               </div>
               <div className="card__action-buttons text-center">
+                {cartState.cartItems.some((cart) => products._id === cart._id) ? (
+                  <button className="button button-secondary p1 btn-full bold">
+                    <Link to="/MyCart"> Go To Cart</Link>
+                  </button>
+                ) : (
                   <button
                     className="button button-secondary p1 btn-full bold"
+                    onClick={() =>
+                      cartDispatch({ type: "ADD_TO_CART", payload: products })
+                    }
                   >
                     Add To Cart
                   </button>
+                )}
               </div>
             </li>
             );

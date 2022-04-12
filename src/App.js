@@ -1,6 +1,6 @@
 import "./styles.css";
 import {Navigation} from "./Components/index";
-import {Home, ProductPage, Mockman, MyCart, WishList, Login, Signup} from "./pages/index";
+import {Home, ProductPage, Mockman, MyCart, WishList, Login, Signup, NotFound} from "./pages/index";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -16,6 +16,7 @@ export default function App() {
         <Route path="Login" element={<Login />} />
         <Route path="Signup" element={<Signup />} />
         <Route path="Mockman" element={<Mockman />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

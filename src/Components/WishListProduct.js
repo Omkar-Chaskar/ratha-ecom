@@ -2,9 +2,11 @@ import "../styles.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 import { useWishlist } from "../context/wishlist-provider";
+import { useCart } from "../context/cart-provider";
 
 export default function WishListProduct() {
   const { wishlistState, wishlistDispatch } = useWishlist();
+  const { cartState, cartDispatch } = useCart();
 
   return (
     <section className="wishlist-container">
@@ -36,7 +38,7 @@ export default function WishListProduct() {
                   <img
                     className="card-img-height"
                     src={products.productImg}
-                    alt=""
+                    alt={products.subtitle}
                   />
                 </div>
               </div>
@@ -56,11 +58,20 @@ export default function WishListProduct() {
                 </div>
               </div>
               <div className="card__action-buttons text-center">
+                {cartState.cartItems.some((cart) => products._id === cart._id) ? (
+                  <button className="button button-secondary p1 btn-full bold">
+                    <Link to="/MyCart"> Go To Cart</Link>
+                  </button>
+                ) : (
                   <button
                     className="button button-secondary p1 btn-full bold"
+                    onClick={() =>
+                      cartDispatch({ type: "ADD_TO_CART", payload: products })
+                    }
                   >
                     Add To Cart
                   </button>
+                )}
               </div>
             </li>
               );

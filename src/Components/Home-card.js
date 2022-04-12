@@ -8,9 +8,8 @@ export default function HomeCard() {
         <Link to="ProductPage">
           <img
             className="image"
-            src="https://images.unsplash.com/photo-1596484552993-aec4311d3381?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            alt="squire"
-            srcSet=""
+            src="https://img.freepik.com/free-vector/order-now-banner_52683-48697.jpg?t=st=1649279167~exp=1649279767~hmac=da2041a293581706b2fafb11ee7d08a55aa97a950a9a768162fe312215d729ce&w=1380"
+            alt="Banner image"
           />
         </Link>
       </section>

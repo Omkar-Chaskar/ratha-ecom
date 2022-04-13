@@ -4,10 +4,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Badge } from "@mui/material";
 import { useWishlist } from "../context/wishlist-provider";
+import { useCart } from "../context/cart-provider";
 
 export default function Navigation() {
 
   const { wishlistState } = useWishlist();
+  const { cartState } = useCart();
 
   return (
     <nav className="navigation">
@@ -44,7 +46,10 @@ export default function Navigation() {
           <li className="nav-submenu-sub">
             <Link to="MyCart">
               <div className="badge">
-                <Badge badgeContent={4} color="error">
+                <Badge
+                  badgeContent={cartState.cartItems && cartState.cartItems.length}
+                  color="error"
+                >
                   <ShoppingCartIcon />
                 </Badge>
                 <span className="material-icons-outlined">cart</span>

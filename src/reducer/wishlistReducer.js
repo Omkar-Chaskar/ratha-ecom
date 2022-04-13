@@ -1,6 +1,5 @@
-export function productReducer(wishlistState, action) {
-    switch (action.type) {  
-  
+export function productReducer( wishlistState, action) {
+    switch (action.type) { 
       case "ADD_TO_WISHLIST":
         return { ...wishlistState, wishlist: wishlistState.wishlist.concat(action.payload) };
   

@@ -1,42 +1,52 @@
 import "../styles.css";
+import { useCart } from "../context/cart-provider";
 
 export default function CartOrder() {
+  const { cartState } = useCart();
+
   return (
     <div className="CartOrder">
-      <div class="cart-billing-container text-start">
-        <div class="cart-billing-header">
+      <div className="cart-billing-container text-start">
+        <div className="cart-billing-header">
           <h5>PRICE DETAILS</h5>
         </div>
         <hr />
-        <div class="billing-container">
-          <div class="billing-prices">
+        <div className="billing-container">
+          <div className="billing-prices">
             <p>
-              Price (<span class="cart-product-count">2</span> items)
+              Price (
+              <span className="cart-product-count">
+                {cartState.cartItems && cartState.cartItems.length}
+              </span>{" "}
+              items)
             </p>
-            <p>&#8377;4999</p>
+            <p>&#8377;{cartState.oriPrice}</p>
           </div>
-          <div class="billing-discount-price">
+          <div className="billing-discount-price">
             <p>Discount</p>
-            <p>&#8377;-1999</p>
+            <p>&#8377;{cartState.discPrice}</p>
           </div>
-          <div class="billing-delivery-charges">
+          <div className="billing-delivery-charges">
             <p>Delivery Charges</p>
-            <p>&#8377;499</p>
+            <p>&#8377;{cartState.deliveryCharge}</p>
           </div>
         </div>
         <hr />
-        <div class="cart-billing-total">
+        <div className="cart-billing-total">
           <p>TOTAL AMOUNT</p>
-          <p>&#8377;2000</p>
+          <p>&#8377;{cartState.curPrice + cartState.deliveryCharge}</p>
         </div>
         <hr />
-        <div class="cart-billing-saving">
+        <div className="cart-billing-saving">
           <p>
-            You will save <span class="saving-price">&#8377;2000</span> on this
-            order
+            You will save{" "}
+            <span className="saving-price">
+              &#8377;{cartState.oriPrice - cartState.curPrice}
+            </span>{" "}
+            on this order
           </p>
         </div>
-        <button class="button button-primary">PLACE ORDER</button>
+        <button className="button button-primary">PLACE ORDER</button>
       </div>
     </div>
   );

@@ -5,5 +5,6 @@ import MyCart from "./MyCart";
 import ProductPage from "./ProductPage";
 import Signup from "./Signup";
 import WishList from "./WishList";
+import NotFound from "./NotFound";
 
-export {Home ,Login , Mockman ,MyCart , ProductPage ,Signup ,WishList};
+export {Home ,Login , Mockman ,MyCart , ProductPage ,Signup ,WishList ,NotFound};

@@ -7,20 +7,23 @@ import { FilterProvider } from "./context/filter-provider";
 import { ProductProvider } from "./context/product-provider";
 import { CategoryProvider } from "./context/category-provider";
 import { WishlistProvider } from "./context/wishlist-provider";
+import { CartProvider } from "./context/cart-provider";
 // Call make Server
 makeServer();
 
 ReactDOM.render(
   <BrowserRouter>
-    <WishlistProvider>
-      <CategoryProvider>
-        <ProductProvider>
-          <FilterProvider>
-            <App />
-          </FilterProvider>
-        </ProductProvider>
-      </CategoryProvider>
-    </WishlistProvider>
+    <CartProvider>
+      <WishlistProvider>
+        <CategoryProvider>
+          <ProductProvider>
+            <FilterProvider>
+              <App />
+            </FilterProvider>
+          </ProductProvider>
+        </CategoryProvider>
+      </WishlistProvider>
+    </CartProvider>
   </BrowserRouter>,
   document.getElementById("root")
 );

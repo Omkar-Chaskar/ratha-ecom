@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const removeFromCart = async (_id) => {
   try {
@@ -9,7 +10,7 @@ export const removeFromCart = async (_id) => {
     });
     return { data, status };
   } catch (err) {
-    alert("Something went wrong: Remove From Cart Failed");
+    toast("Cart update fail");
     console.error(err);
   }
 };

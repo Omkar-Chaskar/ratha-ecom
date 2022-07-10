@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const signUpServices = async (signUpData) => {
   console.log(signUpData);
@@ -7,7 +8,7 @@ const signUpServices = async (signUpData) => {
     const { data, status } = await axios.post("/api/auth/signup", signUpData);
     return { data, status };
   } catch {
-    console.error("Sign up failed");
+    toast("Sign up failed");
   }
 };
 export { signUpServices };

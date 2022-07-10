@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const addToWishlist = async (product) => {
   try {
@@ -10,7 +11,7 @@ export const addToWishlist = async (product) => {
     });
     return { data, status };
   } catch (err) {
-    alert("Something went wrong: Add To Wishlist Failed");
+    toast("Wishlist update fail");
     console.error(err);
   }
 };

@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const setQuantityToCart = async (_id, actionType) => {
   try {
@@ -10,7 +11,7 @@ export const setQuantityToCart = async (_id, actionType) => {
     });
     return { data, status };
   } catch (err) {
-    alert("Something went wrong: Cart Failed");
+    toast("Failed to update cart");
     console.error(err);
   }
 };

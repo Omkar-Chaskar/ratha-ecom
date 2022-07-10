@@ -1,5 +1,6 @@
 import "../styles.css";
 import {CatagoriesCard, HomeCard ,Collection }from "../Components/index";
+import { Toaster } from "react-hot-toast";
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
       <CatagoriesCard />
       <HomeCard />
       <Collection />
+      <Toaster position="bottom-right" reverseOrder={true} />
     </div>
   );
 }

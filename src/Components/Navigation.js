@@ -5,11 +5,13 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Badge } from "@mui/material";
 import { useWishlist } from "../context/wishlist-provider";
 import { useCart } from "../context/cart-provider";
+import { useAuth } from "../context";
 
 export default function Navigation() {
-
-  const { wishlistState } = useWishlist();
-  const { cartState } = useCart();
+  const { wishlistState, wishlistDispatch } = useWishlist();
+  const { cartState, cartDispatch } = useCart();
+  const { logOutHandler, user } = useAuth();
+  const { loginStatus } = user;
 
   return (
     <nav className="navigation">
@@ -32,10 +34,10 @@ export default function Navigation() {
       <div className="nav-submenu">
         <ul className="nav-flex-row">
           <li className="nav-submenu-sub">
-          <Link to="WishList">
+            <Link to={loginStatus ? "WishList" : "Login"}>
               <div className="badge">
                 <Badge
-                  badgeContent={wishlistState.wishlist.length}
+                  badgeContent={wishlistState && wishlistState.length}
                   color="error"
                 >
                   <FavoriteIcon />
@@ -44,10 +46,10 @@ export default function Navigation() {
             </Link>
           </li>
           <li className="nav-submenu-sub">
-            <Link to="MyCart">
+            <Link to={loginStatus ? "MyCart" : "Login"}>
               <div className="badge">
                 <Badge
-                  badgeContent={cartState.cartItems && cartState.cartItems.length}
+                  badgeContent={cartState && cartState.length}
                   color="error"
                 >
                   <ShoppingCartIcon />
@@ -57,7 +59,22 @@ export default function Navigation() {
             </Link>
           </li>
           <li className="nav-submenu-sub">
-            <Link to="/Login">Log Out</Link>
+            {loginStatus ? (
+              <p
+                className="bold button button-primary p2"
+                onClick={(e) => {
+                  logOutHandler();
+                  cartDispatch({ type: "GET_CART", payload: [] });
+                  wishlistDispatch({ type: "GET_WISHLIST", payload: [] });
+                }}
+              >
+                LogOut
+              </p>
+            ) : (
+              <Link to="/Login" className="bold button button-primary p2">
+                LogIn
+              </Link>
+            )}
           </li>
         </ul>
       </div>

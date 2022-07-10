@@ -3,10 +3,11 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 import { useWishlist } from "../context/wishlist-provider";
 import { useCart } from "../context/cart-provider";
+import { Toaster } from "react-hot-toast";
 
 export default function WishListProduct() {
-  const { wishlistState, wishlistDispatch } = useWishlist();
-  const { cartState, cartDispatch } = useCart();
+  const { wishlistState, removeFromWishlistHandler } = useWishlist();
+  const { cartState, addToCartHandler } = useCart();
 
   return (
     <section className="wishlist-container">
@@ -19,65 +20,63 @@ export default function WishListProduct() {
         </p>
       ) : (
         <ul className="product-container">
-          {wishlistState.wishlist &&
-            wishlistState.wishlist.map((products) => {
+          {wishlistState &&
+            wishlistState.map((product) => {
               return (
-                <li className="card-vertical" key={products._id}>
-              <div className="card__primary-action card__primary-action-column card__primary-action-vertical">
-                <span className="material-icons-outlined badge-up-right-corner card-badge card-badge-vertical">
+                <li className="card-vertical" key={product._id}>
+                  <div className="card__primary-action card__primary-action-column card__primary-action-vertical">
+                    <span className="material-icons-outlined badge-up-right-corner card-badge card-badge-vertical">
                       <FavoriteIcon
-                        onClick={() =>
-                          wishlistDispatch({
-                            type: "REMOVE_FROM_WISHLIST",
-                            payload: products
-                          })
-                        }
+                        onClick={() => {
+                          removeFromWishlistHandler(product._id);
+                        }}
                       />
                     </span>
-                <div className="card__media-column card__media-column-vertical">
-                  <img
-                    className="card-img-height"
-                    src={products.productImg}
-                    alt={products.subtitle}
-                  />
-                </div>
-              </div>
-              <div className="card__secondary text-center card__secondary-vertical">
-                <p className="p1"> 
-                <p className="card__subtitle card-price bold p3">
-                &#8377;{products.price} <span className="card-cut-price">&#8377;{products.orignalPrice}</span>
-            </p>
-                </p>
-                <div className="card__subtitle text-center">
-                <p className="p3">
-                  {products.subtitle}
-                </p>
-                <p className="p2">
-                  {products.description}
-                </p>
-                </div>
-              </div>
-              <div className="card__action-buttons text-center">
-                {cartState.cartItems.some((cart) => products._id === cart._id) ? (
-                  <button className="button button-secondary p1 btn-full bold">
-                    <Link to="/MyCart"> Go To Cart</Link>
-                  </button>
-                ) : (
-                  <button
-                    className="button button-secondary p1 btn-full bold"
-                    onClick={() =>
-                      cartDispatch({ type: "ADD_TO_CART", payload: products })
-                    }
-                  >
-                    Add To Cart
-                  </button>
-                )}
-              </div>
-            </li>
+                    <div className="card__media-column card__media-column-vertical">
+                      <img
+                        className="card-img-height"
+                        src={product.productImg}
+                        alt={product.subtitle}
+                      />
+                    </div>
+                  </div>
+                  <div className="card__secondary text-center card__secondary-vertical">
+                    <p className="p1">
+                      <p className="card__subtitle card-price bold p3">
+                        &#8377;{product.price}{" "}
+                        <span className="card-cut-price">
+                          &#8377;{product.orignalPrice}
+                        </span>
+                      </p>
+                    </p>
+                    <div className="card__subtitle text-center">
+                      <p className="p3">{product.subtitle}</p>
+                      <p className="p2">{product.description}</p>
+                    </div>
+                  </div>
+                  <div className="card__action-buttons text-center">
+                    {cartState &&
+                    cartState.some((cart) => product._id === cart._id) ? (
+                      <button className="button button-secondary p1 btn-full bold">
+                        <Link to="/MyCart"> Go To Cart</Link>
+                      </button>
+                    ) : (
+                      <button
+                        className="button button-secondary p1 btn-full bold"
+                        onClick={() => {
+                          addToCartHandler(product);
+                        }}
+                      >
+                        Add To Cart
+                      </button>
+                    )}
+                  </div>
+                </li>
               );
             })}
         </ul>
       )}
+      <Toaster position="bottom-right" reverseOrder={true} />
     </section>
   );
 }

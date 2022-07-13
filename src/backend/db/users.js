@@ -11,9 +11,11 @@ export const users = [
     _id: uuid(),
     firstName: "Adarsh",
     lastName: "Balika",
-    email: "adarshbalika@gmail.com",
-    password: "adarshbalika",
+    email: "test1234@gmail.com",
+    password: "test1234",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-  },
+    cart: [],
+    wishlist: []
+  }
 ];

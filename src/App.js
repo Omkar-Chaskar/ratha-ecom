@@ -1,10 +1,24 @@
 import "./styles.css";
-import {Navigation} from "./Components/index";
-import {Home, ProductPage, Mockman, MyCart, WishList, Login, Signup, NotFound} from "./pages/index";
-
+import { useEffect } from "react";
+import { Navigation } from "./Components/index";
+import {
+  Home,
+  ProductPage,
+  Mockman,
+  MyCart,
+  WishList,
+  Login,
+  Signup,
+  NotFound
+} from "./pages/index";
+import { documentTitle } from "./utils/documentTitle";
 import { Routes, Route } from "react-router-dom";
 
 export default function App() {
+  useEffect(() => {
+    documentTitle();
+  }, []);
+
   return (
     <div className="App">
       <Navigation />

@@ -1,13 +1,10 @@
 import "../styles.css";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Link } from "react-router-dom";
 import { useWishlist } from "../context/wishlist-provider";
-import { useCart } from "../context/cart-provider";
 import { Toaster } from "react-hot-toast";
+import { Product } from "./index"
 
 export default function WishListProduct() {
-  const { wishlistState, removeFromWishlistHandler } = useWishlist();
-  const { cartState, addToCartHandler } = useCart();
+  const { wishlistState } = useWishlist();
 
   return (
     <section className="wishlist-container">
@@ -23,55 +20,7 @@ export default function WishListProduct() {
           {wishlistState &&
             wishlistState.map((product) => {
               return (
-                <li className="card-vertical" key={product._id}>
-                  <div className="card__primary-action card__primary-action-column card__primary-action-vertical">
-                    <span className="material-icons-outlined badge-up-right-corner card-badge card-badge-vertical">
-                      <FavoriteIcon
-                        onClick={() => {
-                          removeFromWishlistHandler(product._id);
-                        }}
-                      />
-                    </span>
-                    <div className="card__media-column card__media-column-vertical">
-                      <img
-                        className="card-img-height"
-                        src={product.productImg}
-                        alt={product.subtitle}
-                      />
-                    </div>
-                  </div>
-                  <div className="card__secondary text-center card__secondary-vertical">
-                    <p className="p1">
-                      <p className="card__subtitle card-price bold p3">
-                        &#8377;{product.price}{" "}
-                        <span className="card-cut-price">
-                          &#8377;{product.orignalPrice}
-                        </span>
-                      </p>
-                    </p>
-                    <div className="card__subtitle text-center">
-                      <p className="p3">{product.subtitle}</p>
-                      <p className="p2">{product.description}</p>
-                    </div>
-                  </div>
-                  <div className="card__action-buttons text-center">
-                    {cartState &&
-                    cartState.some((cart) => product._id === cart._id) ? (
-                      <button className="button button-secondary p1 btn-full bold">
-                        <Link to="/MyCart"> Go To Cart</Link>
-                      </button>
-                    ) : (
-                      <button
-                        className="button button-secondary p1 btn-full bold"
-                        onClick={() => {
-                          addToCartHandler(product);
-                        }}
-                      >
-                        Add To Cart
-                      </button>
-                    )}
-                  </div>
-                </li>
+                <Product product={product} key={product._id} />
               );
             })}
         </ul>

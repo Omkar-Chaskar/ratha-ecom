@@ -1,5 +1,5 @@
 import "../styles.css";
-import {Filter ,Product } from "../Components/index";
+import {Filter ,ProductList } from "../Components/index";
 import { Toaster } from "react-hot-toast";
 
 export default function ProductPage() {
@@ -11,7 +11,7 @@ export default function ProductPage() {
         </div>
       </section>
       <section className="main">
-        <Product />
+        <ProductList />
       </section>
       <Toaster position="bottom-right" reverseOrder={true} />
     </div>
